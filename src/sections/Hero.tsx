@@ -65,7 +65,9 @@ export const HeroSection = () => {
             alt="Person peeking from behind laptop"
           />
           <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-2 rounded-lg ">
-            <div className="bg-green-500 size-2.5 rounded-full my-auto mr-2"></div>
+            <div className="bg-green-500 size-2.5 rounded-full my-auto mr-2 relative">
+              <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large"></div>
+            </div>
             <div className="text-base font-medium">
               Availabe for new projects
             </div>
