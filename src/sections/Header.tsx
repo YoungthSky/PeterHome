@@ -33,10 +33,42 @@ export const Header = () => {
     (sectionId: string, e: React.MouseEvent) => {
       e.preventDefault();
       const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        setActiveSection(sectionId);
-      }
+      if (!element) return;
+
+      const elementRect = element.getBoundingClientRect();
+      const scrollDistance = Math.abs(elementRect.top);
+
+      // 根据滚动距离计算持续时间（最小500ms，最大1500ms）
+      const duration = Math.max(500, Math.min(1500, scrollDistance * 1.5));
+
+      const startPosition = window.pageYOffset;
+      const targetPosition = startPosition + elementRect.top;
+      const startTime = performance.now();
+
+      // 自定义缓动函数 - easeInOutCubic
+      const easeInOutCubic = (t: number): number => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+
+      // 动画函数
+      const animation = (currentTime: number) => {
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        const easedProgress = easeInOutCubic(progress);
+        const currentPosition =
+          startPosition + (targetPosition - startPosition) * easedProgress;
+
+        window.scrollTo(0, currentPosition);
+
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        } else {
+          setActiveSection(sectionId);
+        }
+      };
+
+      requestAnimationFrame(animation);
     },
     []
   );
