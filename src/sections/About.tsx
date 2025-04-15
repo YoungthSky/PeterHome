@@ -13,11 +13,36 @@ import GitHubIcon from "@/assets/icons/github.svg";
 import { TechIcon } from "@/components/TechIcon";
 import mapImage from "@/assets/images/map.png";
 import smileMemoji from "@/assets/images/memoji-smile.png";
+
 import { title } from "process";
 import { CardHeader } from "@/components/CardHeader";
 import { ToolBoxItems } from "@/components/ToolBoxItems";
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+
+// life photos
+import beering from "@/assets/images/life/beering.jpeg";
+import cooking from "@/assets/images/life/cooking.jpeg";
+import dinner from "@/assets/images/life/dinner.jpeg";
+import gaming from "@/assets/images/life/gaming.jpeg";
+import hallowmas from "@/assets/images/life/hallowmas.jpeg";
+import hiking from "@/assets/images/life/hiking.jpeg";
+import hiking2 from "@/assets/images/life/hiking2.jpeg";
+import meeting from "@/assets/images/life/meeting.jpeg";
+import partner from "@/assets/images/life/partner.jpeg";
+import party from "@/assets/images/life/party.jpeg";
+import teamCofe from "@/assets/images/life/teamCofe.jpeg";
+import teamBuilding from "@/assets/images/life/teemBuilding.jpeg";
+import working from "@/assets/images/life/working.jpeg";
+
+// books
+import cleanCode from "@/assets/images/book/cleanCode.jpeg";
+import designPatterns from "@/assets/images/book/designPatterns.jpeg";
+import theArtOfComputerProgramming from "@/assets/images/book/theArtOfComputerProgramming.jpeg";
+import thinkInJave from "@/assets/images/book/thinkInJave.jpeg";
+import javascriptBook from "@/assets/images/book/javascriptBook.jpeg";
+import androidCrazyLectureNotes from "@/assets/images/book/androidCrazyLectureNotes.jpeg";
+
 const toolboxIterms = [
   {
     title: "JavaScript",
@@ -89,9 +114,103 @@ const hobbies = [
     top: "70%",
   },
 ];
+// life photos array
+const galleryItems = [
+  {
+    id: 1,
+    image: party,
+    title: "party",
+    description: "party",
+  },
+  {
+    id: 2,
+    image: cooking,
+    title: "cooking",
+    description: "cooking",
+  },
+  {
+    id: 3,
+    image: dinner,
+    title: "dinner",
+    description: "dinner",
+  },
+  {
+    id: 4,
+    image: gaming,
+    title: "gaming",
+    description: "gaming",
+  },
+  {
+    id: 5,
+    image: hallowmas,
+    title: "hallowmas",
+    description: "hallowmas",
+  },
+  {
+    id: 6,
+    image: hiking,
+    title: "hiking",
+    description: "hiking",
+  },
+  {
+    id: 7,
+    image: hiking2,
+    title: "hiking2",
+    description: "hiking2",
+  },
+  {
+    id: 8,
+    image: meeting,
+    title: "meeting",
+    description: "meeting",
+  },
+  {
+    id: 9,
+    image: partner,
+    title: "partner",
+    description: "partner",
+  },
+  {
+    id: 10,
+    image: beering,
+    title: "beering",
+    description: "beering",
+  },
+  {
+    id: 11,
+    image: teamCofe,
+    title: "teamCofe",
+    description: "teamCofe",
+  },
+  {
+    id: 12,
+    image: teamBuilding,
+    title: "teamBuilding",
+    description: "teamBuilding",
+  },
+  {
+    id: 13,
+    image: working,
+    title: "working",
+    description: "working",
+  },
+];
 
 export const AboutSection = () => {
   const constraintRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false); // 添加暂停状态
+
+  // 添加自动切换功能
+  useEffect(() => {
+    if (isPaused) return; // 如果暂停则不执行自动切换
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
+    }, 3000); // 每秒切换一次
+
+    return () => clearInterval(timer); // 清理定时器
+  }, [isPaused]);
   return (
     <div id="about" className="py-[125px] lg:py-28">
       <div className=" container">
@@ -180,6 +299,95 @@ export const AboutSection = () => {
               </div>
             </Card>
           </div>
+          <Card
+            className="h-[380px] p-0 relative overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 300 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -300 }}
+                transition={{ duration: 0.5 }}
+                className="relative h-full"
+              >
+                <Image
+                  src={galleryItems[currentIndex].image}
+                  alt={galleryItems[currentIndex].title}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900/80 to-transparent">
+                  <h3 className="text-lg font-medium text-white">
+                    {galleryItems[currentIndex].title}
+                  </h3>
+                  <p className="text-sm text-white/80">
+                    {galleryItems[currentIndex].description}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* 导航按钮 */}
+            <button
+              onClick={() =>
+                setCurrentIndex(
+                  (prev) =>
+                    (prev - 1 + galleryItems.length) % galleryItems.length
+                )
+              }
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 transition-colors"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            <button
+              onClick={() =>
+                setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
+              }
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 transition-colors"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+
+            {/* 指示器 */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {galleryItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentIndex ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </Card>
         </div>
       </div>
     </div>
