@@ -8,7 +8,10 @@ import HeroOrbit from "@/components/HeroOrbit";
 
 export const HeroSection = () => {
   return (
-    <div className="py-[78px] md:py-48 lg:py-[202px] relative z-0 overflow-clip">
+    <div
+      id="home"
+      className="py-[78px] md:py-48 lg:py-[202px] relative z-0 overflow-clip"
+    >
       {/* 淡出遮罩 */}
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         {/* 磨砂背景：todo */}
