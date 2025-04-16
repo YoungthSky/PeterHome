@@ -14,7 +14,7 @@ import GitHubIcon from "@/assets/icons/github.svg";
 import JavaIcon from "@/assets/icons/java.svg";
 import GoIcon from "@/assets/icons/go.svg";
 import SolidityIcon from "@/assets/icons/solidity.svg";
-import CPlusIcon from "@/assets/icons/CPlus.svg";
+// import CPlusIcon from "@/assets/icons/CPlus.svg";
 import CShapIcon from "@/assets/icons/CShap.svg";
 import PSIcon from "@/assets/icons/PS.svg";
 import FigmaIcon from "@/assets/icons/figma.svg";
@@ -93,10 +93,10 @@ const toolboxIterms = [
     title: "Solidity",
     iconType: SolidityIcon,
   },
-  {
-    title: "C++",
-    iconType: CPlusIcon,
-  },
+  // {
+  //   title: "C++",
+  //   iconType: CPlusIcon,
+  // },
   {
     title: "C#",
     iconType: CShapIcon,
