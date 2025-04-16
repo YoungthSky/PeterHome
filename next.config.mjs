@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  output: "export", // 静态导出
+  images: {
+    unoptimized: true, // GitHub Pages 不支持图片优化
+  },
+  basePath: "/PeterHome.github.io", // 替换为你的仓库名
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
