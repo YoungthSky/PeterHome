@@ -51,6 +51,7 @@ import designPatterns from "@/assets/images/book/designPatterns.jpeg";
 import theArtOfComputerProgramming from "@/assets/images/book/theArtOfCoumouterProgram.jpeg";
 import thinkInJave from "@/assets/images/book/thinkInJava.jpeg";
 import androidCrazyLectureNotes from "@/assets/images/book/androidCrazyLectureNotes.jpeg";
+import { Gallery } from "@/components/Gallery";
 
 const toolboxIterms = [
   {
@@ -275,22 +276,6 @@ const books = [
 
 export const AboutSection = () => {
   const constraintRef = useRef(null);
-  const [currentGalleryIndex, setGalleryCurrentIndex] = useState(0);
-  const [isGalleryPaused, setGalleryIsPaused] = useState(false); // 添加暂停状态
-  const [currentBookIndex, setBookCurrentIndex] = useState(0);
-  const [isBookPaused, setBookIsPaused] = useState(false); // 添加暂停状态
-
-  // 添加自动切换功能
-  useEffect(() => {
-    if (isGalleryPaused) return; // 如果暂停则不执行自动切换
-
-    const timer = setInterval(() => {
-      setGalleryCurrentIndex((prev) => (prev + 1) % galleryItems.length);
-      setBookCurrentIndex((prev) => (prev + 1) % books.length);
-    }, 3000); // 每秒切换一次
-
-    return () => clearInterval(timer); // 清理定时器
-  }, [isGalleryPaused]);
   return (
     <div id="about" className="py-[125px] lg:py-28">
       <div className=" container">
@@ -306,77 +291,7 @@ export const AboutSection = () => {
                 title="My Reads"
                 description="Explore the books shaping my perspectives"
               />
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentGalleryIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative h-full"
-                >
-                  <Image
-                    src={books[currentBookIndex].image}
-                    alt={books[currentBookIndex].title}
-                    className="h-full w-full object-cover"
-                  />
-                  {/* 标题遮罩 */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                    <p className="text-sm text-white/90 font-medium">
-                      {books[currentBookIndex].title}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* 导航按钮 - 只在悬停时显示 */}
-              <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button
-                  onClick={() =>
-                    setGalleryCurrentIndex(
-                      (prev) => (prev - 1 + books.length) % books.length
-                    )
-                  }
-                  className="p-2 rounded-full bg-black/20 backdrop-blur hover:bg-black/40 transition-colors"
-                  aria-label="Previous image"
-                >
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  onClick={() =>
-                    setGalleryCurrentIndex((prev) => (prev + 1) % books.length)
-                  }
-                  className="p-2 rounded-full bg-black/20 backdrop-blur hover:bg-black/40 transition-colors"
-                  aria-label="Next image"
-                >
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <Gallery items={books} autoPlayInterval={3000} />
             </Card>
             <Card
               id="toolbox"
@@ -446,97 +361,9 @@ export const AboutSection = () => {
               </div>
             </Card>
           </div>
-          <Card
-            id="gallery"
-            className="h-[380px] p-0 relative overflow-hidden"
-            onMouseEnter={() => setGalleryIsPaused(true)}
-            onMouseLeave={() => setGalleryIsPaused(false)}
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentGalleryIndex}
-                initial={{ opacity: 0, x: 300 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -300 }}
-                transition={{ duration: 0.5 }}
-                className="relative h-full"
-              >
-                <Image
-                  src={galleryItems[currentGalleryIndex].image}
-                  alt={galleryItems[currentGalleryIndex].title}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900/80 to-transparent">
-                  <h3 className="text-lg font-medium text-white">
-                    {galleryItems[currentGalleryIndex].title}
-                  </h3>
-                  <p className="text-sm text-white/80">
-                    {galleryItems[currentGalleryIndex].description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
 
-            {/* 导航按钮 */}
-            <button
-              onClick={() =>
-                setGalleryCurrentIndex(
-                  (prev) =>
-                    (prev - 1 + galleryItems.length) % galleryItems.length
-                )
-              }
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 transition-colors"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            <button
-              onClick={() =>
-                setGalleryCurrentIndex(
-                  (prev) => (prev + 1) % galleryItems.length
-                )
-              }
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 transition-colors"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-
-            {/* 指示器 */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {galleryItems.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setGalleryCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentGalleryIndex ? "bg-white" : "bg-white/50"
-                  }`}
-                />
-              ))}
-            </div>
+          <Card id="gallery" className="h-[380px] p-0 relative overflow-hidden">
+            <Gallery items={galleryItems} autoPlayInterval={3000} />
           </Card>
         </div>
       </div>
