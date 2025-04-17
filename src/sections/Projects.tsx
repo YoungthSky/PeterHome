@@ -10,37 +10,39 @@ import Card from "@/components/Card";
 
 const portfolioProjects = [
   {
-    company: "Acme Corp",
-    year: "2022",
-    title: "Dark Saas Landing Page",
+    company: "China Construction Bank",
+    year: "2024",
+    title: "AI Platform  Page",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "One-stop Machine Learning Platform" },
+      {
+        title: "Comprehensive graphical modeling support",
+      },
+      { title: "Machine learning pipeline" },
     ],
     link: "https://youtu.be/4k7IdSLxh6w",
     image: darkSaasLandingPage,
   },
   {
     company: "Innovative Co",
-    year: "2021",
-    title: "Light Saas Landing Page",
+    year: "2020",
+    title: "Smart Prison",
     results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
+      { title: "Improve management efficiency" },
+      { title: "Integrate intelligent hardware" },
+      { title: "Smart big screen and digital twin" },
     ],
     link: "https://youtu.be/7hi5zwO75yc",
     image: lightSaasLandingPage,
   },
   {
-    company: "Quantum Dynamics",
-    year: "2023",
-    title: "AI Startup Landing Page",
+    company: "NetEase Technology Co",
+    year: "2018",
+    title: "Smart Hospital",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Improve the level of inventory management" },
+      { title: "Optimize material procurement management" },
+      { title: "Assist in control and accounting" },
     ],
     link: "https://youtu.be/Z7I5uSRHMHg",
     image: aiStartupLandingPage,
@@ -86,12 +88,12 @@ export const ProjectsSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href={project.link}>
+                  {/* <a href={project.link}>
                     <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
                       <span>Visit Live Site</span>
                       <ArrowUpRightIcon className="size-4" />
                     </button>
-                  </a>
+                  </a> */}
                 </div>
                 <div className="relative">
                   <Image
