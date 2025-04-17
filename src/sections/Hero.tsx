@@ -1,3 +1,4 @@
+"use client";
 import memojiImage from "@/assets/images/memoji-computer.png";
 import Image from "next/image";
 import ArrowdDown from "@/assets/icons/arrow-down.svg";
@@ -5,15 +6,30 @@ import grainImage from "@/assets/images/grain.jpg";
 import StartIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import HeroOrbit from "@/components/HeroOrbit";
+import { useCallback } from "react";
 
 export const HeroSection = () => {
+  // 添加平滑滚动处理函数
+  const handleScrollToSection = useCallback((sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <div
       id="home"
       className="py-[78px] md:py-48 lg:py-[202px] relative z-0 overflow-clip"
     >
       {/* 淡出遮罩 */}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <div className="absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         {/* 磨砂背景：todo */}
         <div
           className="absolute inset-0 -z-30 opacity-5"
@@ -154,12 +170,18 @@ export const HeroSection = () => {
           </p>
         </div>
         {/* 联系我 */}
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-          <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4 z-10">
+          <button
+            onClick={() => handleScrollToSection("project")}
+            className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl"
+          >
             <span>Explore My Work</span>
             <ArrowdDown className="size-4" />
           </button>
-          <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
+          <button
+            onClick={() => handleScrollToSection("contact")}
+            className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
+          >
             <span>👋🏻</span>
             <span className="font-semibold">Let us Connect</span>
           </button>
