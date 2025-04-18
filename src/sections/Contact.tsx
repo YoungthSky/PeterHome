@@ -1,8 +1,13 @@
+"use client";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 export const ContactSection = () => {
+  const handleContactClick = () => {
+    window.location.href = "mailto:965625780@qq.com";
+  };
+
   return (
-    <div id="contact" className="py-16 pt-2 lg:py-24 lg:pt-20">
+    <div id="contact" className="py-16 pt-2 lg:py-24 lg:pt-0">
       <div className="container">
         <div className="bg-gradient-to-r from-emerald-300 to-sky-400 text-gray-900 py-8 px-10 rounded-3xl text-center md:text-left relative overflow-hidden z-0">
           <div
@@ -20,10 +25,16 @@ export const ContactSection = () => {
               </p>
             </div>
             <div>
-              <button className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 w-max border border-gray-900">
+              <button
+                onClick={handleContactClick}
+                className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 w-max border border-gray-900 hover:bg-gray-800 active:bg-gray-700"
+              >
                 <span className="font-semibold">Contact Me</span>
                 <ArrowUpRightIcon className="size-4" />
               </button>
+              <p className="text-xs mt-2 text-center">
+                Call Me :+86 13551131957
+              </p>
             </div>
           </div>
         </div>
