@@ -7,6 +7,7 @@ import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import { SectionHeader } from "@/components/SectionHeader";
 import Card from "@/components/Card";
+import { Carousel } from "@/components/Carousel";
 
 const portfolioProjects = [
   {
@@ -21,7 +22,32 @@ const portfolioProjects = [
       { title: "Machine learning pipeline" },
     ],
     link: "https://youtu.be/4k7IdSLxh6w",
-    image: darkSaasLandingPage,
+    images: [
+      {
+        id: 1,
+        image: "/projects/AIPlatform1.png",
+      },
+      {
+        id: 2,
+        image: "/projects/AIPlatform2.png",
+      },
+      {
+        id: 3,
+        image: "/projects/AIPlatform3.png",
+      },
+      {
+        id: 4,
+        image: "/projects/AIPlatform3.png",
+      },
+      {
+        id: 5,
+        image: "/projects/AIPlatform3.png",
+      },
+      {
+        id: 6,
+        image: "/projects/AIPlatform3.png",
+      },
+    ],
   },
   {
     company: "Innovative Co",
@@ -33,7 +59,20 @@ const portfolioProjects = [
       { title: "Smart big screen and digital twin" },
     ],
     link: "https://youtu.be/7hi5zwO75yc",
-    image: lightSaasLandingPage,
+    images: [
+      {
+        id: 1,
+        image: "/projects/SmartPrison1.png",
+      },
+      {
+        id: 2,
+        image: "/projects/SmartPrison2.png",
+      },
+      {
+        id: 3,
+        image: "/projects/SmartPrison3.png",
+      },
+    ],
   },
   {
     company: "NetEase Technology Co",
@@ -45,7 +84,32 @@ const portfolioProjects = [
       { title: "Assist in control and accounting" },
     ],
     link: "https://youtu.be/Z7I5uSRHMHg",
-    image: aiStartupLandingPage,
+    images: [
+      {
+        id: 1,
+        image: "/projects/SmartHospital1.png",
+      },
+      {
+        id: 2,
+        image: "/projects/SmartHospital2.png",
+      },
+      {
+        id: 3,
+        image: "/projects/SmartHospital3.png",
+      },
+      {
+        id: 4,
+        image: "/projects/SmartHospital4.png",
+      },
+      {
+        id: 5,
+        image: "/projects/SmartHospital5.png",
+      },
+      {
+        id: 6,
+        image: "/projects/SmartHospital6.png",
+      },
+    ],
   },
 ];
 
@@ -95,13 +159,23 @@ export const ProjectsSection = () => {
                     </button>
                   </a> */}
                 </div>
-                <div className="relative">
+                {/* <div className="relative">
                   <Image
-                    src={project.image}
+                    src={"/projects/AIPlatform1.png"}
+                    width={200}
+                    height={100}
                     alt={project.title}
                     className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:max-w-none lg:w-auto"
                   />
-                </div>
+                </div> */}
+
+                <Carousel
+                  items={project.images}
+                  autoPlayInterval={5000}
+                  className="h-[230px]"
+                  showControls={true}
+                  showIndicators={true}
+                />
               </div>
             </Card>
           ))}
