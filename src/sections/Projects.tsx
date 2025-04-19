@@ -172,7 +172,7 @@ export const ProjectsSection = () => {
                 <Carousel
                   items={project.images}
                   autoPlayInterval={5000}
-                  className="h-[230px]"
+                  className="h-[180px] md:h-[240px] my-5 lg:my-0"
                   showControls={true}
                   showIndicators={true}
                 />

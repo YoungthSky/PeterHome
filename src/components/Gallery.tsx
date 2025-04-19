@@ -37,10 +37,34 @@ export const Gallery = ({
 
   return (
     <div
-      className={`h-[380px] p-0 relative overflow-hidden ${className}`}
+      className={`h-[380px] p-0 relative overflow-hidden mx-auto flex items-center justify-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: 300 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -300 }}
+          transition={{ duration: 0.5 }}
+          className="relative w-full h-full flex items-center justify-center"
+        >
+          <Image
+            src={items[currentIndex].image}
+            alt={items[currentIndex].title}
+            className={`h-full w-auto md:h-auto md:w-full object-cover  ${imageClassName}`}
+          />
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900/80 to-transparent">
+            <h3 className="text-lg font-medium text-white">
+              {items[currentIndex].title}
+            </h3>
+            <p className="text-sm text-white/80">
+              {items[currentIndex].description}
+            </p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
       {/* 导航按钮 */}
       <button
         onClick={() =>
@@ -94,30 +118,6 @@ export const Gallery = ({
           />
         ))}
       </div>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 300 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -300 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
-        >
-          <Image
-            src={items[currentIndex].image}
-            alt={items[currentIndex].title}
-            className={`h-full w-full object-cover ${imageClassName}`}
-          />
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900/80 to-transparent">
-            <h3 className="text-lg font-medium text-white">
-              {items[currentIndex].title}
-            </h3>
-            <p className="text-sm text-white/80">
-              {items[currentIndex].description}
-            </p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
     </div>
   );
 };
