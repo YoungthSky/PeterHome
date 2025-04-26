@@ -72,10 +72,10 @@ export const Carousel = ({
             alt={""}
             fill
             className="object-cover"
-            // priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-            quality={85}
-            loading={currentIndex === 0 ? "eager" : "lazy"}
+            priority
+            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            // quality={85}
+            // loading={currentIndex === 0 ? "eager" : "lazy"}
           />
         </motion.div>
       </AnimatePresence>
