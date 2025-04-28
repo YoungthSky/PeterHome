@@ -11,14 +11,14 @@ const calistoga = Calistoga({
   weight: "400",
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Peter's Home",
   description: "Peter's talent show and portfolio!",
-  // 添加viewport meta标签
-  viewport: {
-    width: 'device-width',
-    initialScale: 1
-  }
 };
 
 export default function RootLayout({
