@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
+import Web3 from "web3";
 
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -73,7 +74,7 @@ export const Header = () => {
     []
   );
 
-  // 捐赠处理,调用MetaMask,通过虚拟币进行捐赠
+  // 捐赠处理,调用MetaMask,通过以太坊进行捐赠 调用ethereum.js库
   const handleDonation = async () => {
     try {
       // 检查是否安装了 MetaMask
@@ -93,12 +94,12 @@ export const Header = () => {
         return;
       }
 
-      // 发起转账请求
+      // 构建交易参数
       const transactionParameters = {
         to: "0x61A28E0d0155CB0cE9A48b9B57c6B42F7EFe3283", //我的钱包地址
         from: accounts[0],
         value: "0x2386F26FC10000", // 0.01 ETH in hex
-        // gas: "0x5208", // 可选
+        gas: "0x5208", // 可选
       };
 
       // 发送交易
@@ -111,6 +112,51 @@ export const Header = () => {
     } catch (error: any) {
       console.error("转账失败:", error);
       alert(error.message || "转账失败，请重试");
+    }
+  };
+  // 捐赠处理,使用web3.js库调用MetaMask,通过以太坊进行捐赠
+  const handleDonationUseWeb3js = async () => {
+    try {
+      // 检查是否安装了 MetaMask
+      if (typeof window.ethereum === "undefined") {
+        alert("请先安装 MetaMask 钱包");
+        window.open("https://metamask.io/download/", "_blank");
+        return;
+      }
+      //初始化 Web3.js
+      const web3 = new Web3(window.ethereum);
+      // 请求用户连接钱包
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      //判断是否连接成功
+      if (!accounts || accounts.length === 0) {
+        alert("请先连接 MetaMask 钱包");
+        return;
+      }
+      //准备交易参数
+      const amount = "0.01"; //ETH
+      const weiAmount = web3.utils.toWei(amount, "ether");
+      //构建交易参数
+      const transaction = {
+        from: accounts[0],
+        to: "0x61A28E0d0155CB0cE9A48b9B57c6B42F7EFe3283",
+        value: weiAmount,
+        gas: "21000",
+      };
+      try {
+        //发送交易
+        const txHash = await web3.eth.sendTransaction(transaction);
+        alert(
+          `感谢您的支持！\n交易已发送，交易哈希: ${txHash.transactionHash}`
+        );
+      } catch (error: any) {
+        console.error("交易失败:", error);
+        alert(error.message || "交易失败，请重试");
+      }
+    } catch (error: any) {
+      console.error("钱包操作失败:", error);
+      alert(error.message || "钱包操作失败，请重试");
     }
   };
 
@@ -160,7 +206,7 @@ export const Header = () => {
       {/* Buy me a coffe 如果你请我喝一杯咖啡，那么每隔一年我将为你储存一杯咖啡;100年后，我将请你喝100杯咖啡🤡。*/}
       <div className="fixed bottom-20 right-6 z-50 group">
         <button
-          onClick={handleDonation}
+          onClick={handleDonationUseWeb3js}
           className="inline-flex items-center gap-2 px-2 border-white/15 rounded-xl 
             hover:bg-gray-800 active:bg-gray-700
             hover:scale-105 active:scale-95 transition-all duration-200
