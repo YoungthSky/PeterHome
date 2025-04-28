@@ -223,12 +223,12 @@ export const Header = () => {
             Buy me a coffee
           </span>
         </button>
-        <div className="absolute bottom-full mb-2 -left-[400px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <div className="absolute bottom-full mb-2 -left-[400px] opacity-100 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
           <div className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm max-w-[500px] whitespace-normal">
             Buy me one cup of coffee today, and I’ll save one for you every
             year. In 100 years, you’ll be drowning in 100 cups of coffee 🤡
           </div>
-          <div className="border-t-8 border-x-8 border-transparent border-t-gray-900 w-0 h-0 absolute left-1/2 -translate-x-1/2"></div>
+          <div className="border-t-8 border-x-8 border-transparent border-t-gray-900 w-0 h-0 absolute right-0 -translate-x-1/2"></div>
         </div>
       </div>
     </>
