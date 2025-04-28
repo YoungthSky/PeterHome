@@ -74,45 +74,73 @@ export const Header = () => {
   );
 
   return (
-    <div className="fixed flex justify-center items-center top-3 pt-3 z-10 w-full">
-      <nav className="flex gap-1 p-0.5 border border-white/15 rounded-full bg-white/10 backdrop-blur">
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick("home", e)}
-          className={`nav-item ${
-            activeSection === "home" ? "bg-white text-gray-900" : ""
-          }`}
-        >
-          Home
-        </a>
-        <a
-          href="#project"
-          onClick={(e) => handleNavClick("project", e)}
-          className={`nav-item ${
-            activeSection === "project" ? "bg-white text-gray-900" : ""
-          }`}
-        >
-          Project
-        </a>
-        <a
-          href="#about"
-          onClick={(e) => handleNavClick("about", e)}
-          className={`nav-item ${
-            activeSection === "about" ? "bg-white text-gray-900" : ""
-          }`}
-        >
-          About
-        </a>
-        <a
-          href="#contact"
-          onClick={(e) => handleNavClick("contact", e)}
-          className={`nav-item ${
-            activeSection === "contact" ? "bg-white text-gray-900" : ""
-          }`}
-        >
-          Contact
-        </a>
-      </nav>
-    </div>
+    <>
+      <div className="fixed flex justify-center items-center top-3 pt-3 z-10 w-full">
+        <nav className="flex gap-1 p-0.5 border border-white/15 rounded-full bg-white/10 backdrop-blur">
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick("home", e)}
+            className={`nav-item ${
+              activeSection === "home" ? "bg-white text-gray-900" : ""
+            }`}
+          >
+            Home
+          </a>
+          <a
+            href="#project"
+            onClick={(e) => handleNavClick("project", e)}
+            className={`nav-item ${
+              activeSection === "project" ? "bg-white text-gray-900" : ""
+            }`}
+          >
+            Project
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => handleNavClick("about", e)}
+            className={`nav-item ${
+              activeSection === "about" ? "bg-white text-gray-900" : ""
+            }`}
+          >
+            About
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick("contact", e)}
+            className={`nav-item ${
+              activeSection === "contact" ? "bg-white text-gray-900" : ""
+            }`}
+          >
+            Contact
+          </a>
+        </nav>
+      </div>
+
+      {/* Buy me a coffe */}
+      <button
+        onClick={() =>
+          window.open(
+            "https://www.buymeacoffee.com/你的用户名",
+            "_blank",
+            "noopener,noreferrer"
+          )
+        }
+        className="fixed bottom-20 right-6 inline-flex items-center gap-2 px-2 border-white/15 rounded-xl 
+          hover:bg-gray-800 active:bg-gray-700 z-50
+          hover:scale-105 active:scale-95 transition-all duration-200
+          hover:rotate-1 active:-rotate-1
+          group"
+      >
+        <span className="font-mono text-lg transform group-hover:rotate-12 group-hover:scale-110 transition-transform duration-200">
+          ☕️
+        </span>
+        <span className="text-sm hidden md:inline lg:hidden group-hover:text-yellow-400 transition-colors duration-200">
+          bmc
+        </span>
+        <span className="text-sm hidden lg:inline group-hover:text-yellow-400 transition-colors duration-200">
+          Buy me a coffee
+        </span>
+      </button>
+    </>
   );
 };
