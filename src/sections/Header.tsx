@@ -172,11 +172,11 @@ export const Header = () => {
       </div>
 
       {/* Buy me a coffe 如果你请我喝一杯咖啡，那么每隔一年我将为你储存一杯咖啡;100年后，我将请你喝100杯咖啡🤡。*/}
-      <div className="fixed bottom-20 right-6 group/tooltip">
+      <div className="fixed bottom-20 right-6 z-50 group">
         <button
           onClick={handleDonation}
           className="inline-flex items-center gap-2 px-2 border-white/15 rounded-xl 
-            hover:bg-gray-800 active:bg-gray-700 z-50
+            hover:bg-gray-800 active:bg-gray-700
             hover:scale-105 active:scale-95 transition-all duration-200
             hover:rotate-1 active:-rotate-1
             group"
@@ -191,7 +191,7 @@ export const Header = () => {
             Buy me a coffee
           </span>
         </button>
-        <div className="absolute bottom-full mb-2 -left-[400px] opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 z-50">
+        <div className="absolute bottom-full mb-2 -left-[400px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
           <div className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm max-w-[500px] whitespace-normal">
             Buy me one cup of coffee today, and I’ll save one for you every
             year. In 100 years, you’ll be drowning in 100 cups of coffee 🤡
