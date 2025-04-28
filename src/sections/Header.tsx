@@ -1,6 +1,20 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 
+// 添加 MetaMask 类型声明
+declare global {
+  interface Window {
+    ethereum?: {
+      isMetaMask?: boolean;
+      request: (request: {
+        method: string;
+        params?: Array<any>;
+      }) => Promise<any>;
+      selectedAddress: string | null;
+    };
+  }
+}
+
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
 
@@ -73,6 +87,47 @@ export const Header = () => {
     []
   );
 
+  // 捐赠处理,调用MetaMask,通过虚拟币进行捐赠
+  const handleDonation = async () => {
+    try {
+      // 检查是否安装了 MetaMask
+      if (typeof window.ethereum === "undefined") {
+        alert("请先安装 MetaMask 钱包");
+        window.open("https://metamask.io/download/", "_blank");
+        return;
+      }
+
+      // 请求用户连接钱包
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      if (!accounts || accounts.length === 0) {
+        alert("请先连接 MetaMask 钱包");
+        return;
+      }
+
+      // 发起转账请求
+      const transactionParameters = {
+        to: "0x61A28E0d0155CB0cE9A48b9B57c6B42F7EFe3283", //我的钱包地址
+        from: accounts[0],
+        value: "0x2386F26FC10000", // 0.01 ETH in hex
+        // gas: "0x5208", // 可选
+      };
+
+      // 发送交易
+      const txHash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [transactionParameters],
+      });
+
+      alert("感谢您的支持！交易已发送\n交易哈希: " + txHash);
+    } catch (error: any) {
+      console.error("转账失败:", error);
+      alert(error.message || "转账失败，请重试");
+    }
+  };
+
   return (
     <>
       <div className="fixed flex justify-center items-center top-3 pt-3 z-10 w-full">
@@ -118,13 +173,7 @@ export const Header = () => {
 
       {/* Buy me a coffe */}
       <button
-        onClick={() =>
-          window.open(
-            "https://www.buymeacoffee.com/你的用户名",
-            "_blank",
-            "noopener,noreferrer"
-          )
-        }
+        onClick={handleDonation}
         className="fixed bottom-20 right-6 inline-flex items-center gap-2 px-2 border-white/15 rounded-xl 
           hover:bg-gray-800 active:bg-gray-700 z-50
           hover:scale-105 active:scale-95 transition-all duration-200
