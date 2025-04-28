@@ -1,20 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 
-// 添加 MetaMask 类型声明
-declare global {
-  interface Window {
-    ethereum?: {
-      isMetaMask?: boolean;
-      request: (request: {
-        method: string;
-        params?: Array<any>;
-      }) => Promise<any>;
-      selectedAddress: string | null;
-    };
-  }
-}
-
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
 

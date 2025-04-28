@@ -13,7 +13,7 @@ const portfolioProjects = [
   {
     company: "China Construction Bank",
     year: "2024",
-    title: "AI Platform  Page",
+    title: "AI Platform Page",
     results: [
       { title: "One-stop Machine Learning Platform" },
       {
@@ -52,7 +52,7 @@ const portfolioProjects = [
   {
     company: "Innovative Co",
     year: "2020",
-    title: "Smart Prison",
+    title: "Smart Prison Page",
     results: [
       { title: "Improve management efficiency" },
       { title: "Integrate intelligent hardware" },
@@ -77,7 +77,7 @@ const portfolioProjects = [
   {
     company: "NetEase Technology Co",
     year: "2018",
-    title: "Smart Hospital",
+    title: "Smart Hospital Page",
     results: [
       { title: "Improve the level of inventory management" },
       { title: "Optimize material procurement management" },
