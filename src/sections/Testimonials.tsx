@@ -11,31 +11,31 @@ import { Fragment } from "react";
 
 const testimonials = [
   {
-    name: "Alex Turner",
+    name: "Alex",
     position: "Marketing Manager @ NetEase Co",
     text: "Peter was instrumental in transforming our website into a powerful marketing tool. His attention to detail and ability to understand our brand is exceptional. We're thrilled with the results!",
     avatar: memojiAvatar1,
   },
   {
-    name: "Olivia Green",
+    name: "Olivia",
     position: "Head of Design @ CCB",
     text: "Working with Peter was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
     avatar: memojiAvatar2,
   },
   {
-    name: "Daniel White",
+    name: "Daniel",
     position: "CEO @ InnovateCo",
     text: "Peter's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
     avatar: memojiAvatar3,
   },
   {
-    name: "Emily Carter",
+    name: "Emily",
     position: "Product Manager @ Dr.PandaCo",
     text: "Peter is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
     avatar: memojiAvatar4,
   },
   {
-    name: "Michael Brown",
+    name: "Michael",
     position: "Director of IT @ YoukiaTech",
     text: "Peter's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
     avatar: memojiAvatar5,
