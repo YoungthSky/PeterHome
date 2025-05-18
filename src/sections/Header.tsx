@@ -1,4 +1,5 @@
 "use client";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { useState, useEffect, useCallback } from "react";
 import Web3 from "web3";
 
@@ -162,6 +163,7 @@ export const Header = () => {
 
   return (
     <>
+      <MusicPlayer />
       <div className="fixed flex justify-center items-center top-3 pt-3 z-10 w-full">
         <nav className="flex gap-1 p-0.5 border border-white/15 rounded-full bg-white/10 backdrop-blur">
           <a
