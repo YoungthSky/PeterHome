@@ -277,7 +277,7 @@ const books = [
 export const AboutSection = () => {
   const constraintRef = useRef(null);
   return (
-    <div id="about" className="py-[125px] lg:py-28">
+    <div id="about" className="pt-[125px] lg:pt-28 pb-8">
       <div className=" container">
         <SectionHeader
           title="About Me"
