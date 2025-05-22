@@ -4,10 +4,16 @@ import { useState, useEffect, useCallback } from 'react';
 import Web3 from 'web3';
 
 export const Header = () => {
-  const [activeSection, setActiveSection] = useState(() => {
-    // 确保代码运行在浏览器环境
-    return localStorage.getItem('activeSection') || 'home';
-  });
+  // 初始状态设置为 'home'
+  const [activeSection, setActiveSection] = useState('');
+
+  // 使用 useEffect 在客户端加载时恢复状态
+  useEffect(() => {
+    const savedSection = localStorage.getItem('activeSection');
+    if (savedSection) {
+      setActiveSection(savedSection);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('activeSection', activeSection);
