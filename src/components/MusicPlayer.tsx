@@ -18,7 +18,7 @@ export function MusicPlayer() {
     const handleInteraction = () => {
       if (audioRef.current && !isPlaying && !hadTriggerPlay) {
         setHadTriggerPlay(true);
-
+        audioRef.current.volume = 0.2;
         audioRef.current
           .play()
           .then(() => {
